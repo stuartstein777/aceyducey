@@ -47,7 +47,6 @@
         (if (= 0 bet)
           (do
             (println "Chicken!")
-            (flush)
             (recur bank-roll))
           (let [player-card (:drawn-card (draw-random-card remaining-deck))]
             (do
@@ -55,11 +54,9 @@
               (if (winning-play? first-card second-card player-card)
                 (do
                   (println "Win!")
-                  (flush)
                   (recur (+ bank-roll bet)))
                 (do
                   (println "Lose!")
-                  (flush)
                   (recur (- bank-roll bet)))))))))))
 
 (defn get-bet
@@ -74,6 +71,5 @@
       bet)))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
   (play-game 100))
