@@ -42,7 +42,6 @@
           remaining-deck (:remaining-cards second-draw)]
       (println "First card: " (display-card first-card))
       (println "Second card: " (display-card second-card))
-      (println "How much do you want to bet [Bankroll: " bank-roll "] ?")
       (let [bet (get-bet bank-roll)]
         (if (= 0 bet)
           (do
@@ -61,12 +60,12 @@
 
 (defn get-bet
   [bank-roll]
+  (println "How much do you want to bet [Bankroll: " bank-roll "] ?")
   (let [bet (-> (read-line)
                 (Integer/parseInt))]
     (if (> bet bank-roll)
       (do
         (println "You can't afford that bet.")
-        (println "How much do you want to bet [Bankroll: " bank-roll "] ?")
         (recur bank-roll))
       bet)))
 
